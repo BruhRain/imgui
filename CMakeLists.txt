@@ -3,6 +3,8 @@ project(ImGui)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+set(BUILD_SHARED_LIBS OFF)
+
 file(GLOB_RECURSE SRCS
   ${PROJECT_SOURCE_DIR}/**.cpp
   ${PROJECT_SOURCE_DIR}/**.h
@@ -22,7 +24,7 @@ FetchContent_MakeAvailable(lunasvg)
 FetchContent_GetProperties(lunasvg SOURCE_DIR lunasvg_SOURCE_DIR)
 
 add_library(${PROJECT_NAME} STATIC ${SRCS})
-target_link_libraries(${PROJECT_NAME} PUBLIC freetype)
+target_link_libraries(${PROJECT_NAME} PUBLIC freetype lunasvg)
 target_include_directories(${PROJECT_NAME} PUBLIC
   ${PROJECT_SOURCE_DIR}
   ${lunasvg_SOURCE_DIR}/include
